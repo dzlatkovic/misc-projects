@@ -1,4 +1,5 @@
 import random
+from tqdm import tqdm
 
 
 def success(prisoner, boxes):
@@ -11,7 +12,7 @@ def success(prisoner, boxes):
     while count < 50 and boxes[next_box] != prisoner:
         count += 1
         next_box = boxes[next_box]
-    return boxes[next_box] == prisoner  # True if he found his own number
+    return boxes[next_box] == prisoner  # True if the prisoner found his own number
 
 
 def good_run(boxes):
@@ -21,9 +22,9 @@ def good_run(boxes):
     return True  # True only if all 100 prisoners found their number
 
 
-number_of_simulations = 10_000
+number_of_simulations = 1_000_000
 successful_tries = 0
-for i in range(number_of_simulations):
+for i in tqdm(range(number_of_simulations)):
     boxes = {}
     prisoner_numbers = list(range(1, 101))  # prisoner list, every prisoner gets his unique ID
     for j in range(1, 101):
